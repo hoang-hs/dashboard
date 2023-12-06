@@ -16,12 +16,4 @@ public class ErrResource {
         this.httpCode = httpCode;
         this.message = message;
     }
-
-    public void setHttpCode(int httpCode) {
-        this.httpCode = httpCode;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
 }
