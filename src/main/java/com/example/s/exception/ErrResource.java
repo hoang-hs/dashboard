@@ -1,7 +1,9 @@
 package com.example.s.exception;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Getter;
 
+@Getter
 public class ErrResource {
 
     @JsonProperty("http_code")
@@ -15,16 +17,8 @@ public class ErrResource {
         this.message = message;
     }
 
-    public int getHttpCode() {
-        return httpCode;
-    }
-
     public void setHttpCode(int httpCode) {
         this.httpCode = httpCode;
-    }
-
-    public String getMessage() {
-        return message;
     }
 
     public void setMessage(String message) {
