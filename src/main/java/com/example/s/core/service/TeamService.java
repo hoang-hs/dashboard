@@ -38,4 +38,17 @@ public class TeamService {
                 .orElseThrow(ResourceNotFoundException::Default);
     }
 
+    public Team update(TeamRequest req, String id) {
+        Team student = teamRepository.findById(id)
+                .orElseThrow(ResourceNotFoundException::Default);
+
+        Team team = req.ToDomain();
+        team.setCreatedAt(student.getCreatedAt());
+        team.setId(id);
+        return teamRepository.save(team);
+    }
+
+    public void delete(String id) {
+        teamRepository.deleteById(id);
+    }
 }

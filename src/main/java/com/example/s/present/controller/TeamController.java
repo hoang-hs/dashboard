@@ -3,6 +3,8 @@ package com.example.s.present.controller;
 import com.example.s.core.domain.Team;
 import com.example.s.core.service.TeamService;
 import com.example.s.present.request.TeamRequest;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,5 +22,15 @@ public class TeamController extends BaseController {
     @GetMapping("/{id}")
     Team get(@PathVariable String id) {
         return teamService.get(id);
+    }
+
+    @PutMapping("/{id}")
+    Team update(@RequestBody @Valid TeamRequest req, @PathVariable @NotBlank String id) {
+        return teamService.update(req, id);
+    }
+
+    @DeleteMapping("/{id}")
+    void delete(@PathVariable @NotBlank String id) {
+        teamService.delete(id);
     }
 }
