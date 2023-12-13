@@ -29,7 +29,6 @@ public class TeamService {
         permission.setTeam(team);
         permission.setRole(Role.ADMIN);
         permissionRepository.save(permission);
-
         return team;
     }
 
@@ -38,16 +37,18 @@ public class TeamService {
                 .orElseThrow(ResourceNotFoundException::Default);
     }
 
+    //Todo check permission
     public Team update(TeamRequest req, String id) {
-        Team student = teamRepository.findById(id)
+        Team existedTeam = teamRepository.findById(id)
                 .orElseThrow(ResourceNotFoundException::Default);
 
         Team team = req.ToDomain();
-        team.setCreatedAt(student.getCreatedAt());
+        team.setCreatedAt(existedTeam.getCreatedAt());
         team.setId(id);
         return teamRepository.save(team);
     }
 
+    //Todo check permission
     public void delete(String id) {
         teamRepository.deleteById(id);
     }

@@ -11,6 +11,8 @@ import com.example.s.present.request.PermissionRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
+
 @Service
 @RequiredArgsConstructor
 public class PermissionService {
@@ -32,4 +34,17 @@ public class PermissionService {
                 .orElseThrow(ResourceNotFoundException::Default);
     }
 
+    //Todo check permission
+    public Permission update(PermissionRequest req, String id) {
+        Permission permission = permissionRepository.findById(id)
+                .orElseThrow(ResourceNotFoundException::Default);
+        permission.setUpdatedAt(Instant.now());
+        permission.setRole(req.getRole());
+        return permissionRepository.save(permission);
+    }
+
+    //Todo check permission
+    public void delete(String id) {
+        permissionRepository.deleteById(id);
+    }
 }
