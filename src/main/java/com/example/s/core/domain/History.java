@@ -18,9 +18,9 @@ public class History {
     private String id;
 
 
-    private String dashboardId;
+    private Dashboard dashboard;
 
-    private String userId;
+    private User user;
 
     @CreatedDate
     Instant createdAt;
