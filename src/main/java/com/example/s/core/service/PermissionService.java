@@ -21,10 +21,9 @@ public class PermissionService {
     public Permission save(PermissionRequest req) {
         User user = userRepository.findById(req.getUserId()).orElseThrow(ResourceNotFoundException::Default);
         Team team = teamRepository.findById(req.getTeamId()).orElseThrow(ResourceNotFoundException::Default);
-        Permission permission = new Permission();
+        Permission permission = req.ToDomain();
         permission.setUser(user);
         permission.setTeam(team);
-        permission.setRole(req.getRole());
         return permissionRepository.save(permission);
     }
 

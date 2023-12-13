@@ -17,8 +17,7 @@ public class DashboardService {
 
     public Dashboard save(DashboardRequest req) {
         Team team = teamRepository.findById(req.getTeamId()).orElseThrow(ResourceNotFoundException::Default);
-        Dashboard dashboard = new Dashboard();
-        dashboard.setData(req.getData());
+        Dashboard dashboard = req.ToDomain();
         dashboard.setTeam(team);
         return dashboardRepository.save(dashboard);
     }

@@ -11,10 +11,5 @@ public class LoginRequest {
     String username;
     @NotBlank
     String password;
-
-    public LoginRequest(String username, String password) {
-        this.username = username;
-        this.password = password;
-    }
 }
 

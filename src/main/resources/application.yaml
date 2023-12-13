@@ -5,3 +5,11 @@ spring:
   data:
     mongodb:
       uri: mongodb://root:password@localhost:27017/dashboard?readPreference=primary&directConnection=true&ssl=false
+
+logging:
+  level:
+    root: info
+    org:
+      springframework:
+        web: debug
+      hibernate: info

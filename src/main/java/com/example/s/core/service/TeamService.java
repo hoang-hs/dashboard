@@ -20,8 +20,7 @@ public class TeamService {
     private final PermissionRepository permissionRepository;
 
     public Team save(TeamRequest req) {
-        Team team = new Team();
-        team.setName(req.getName());
+        Team team = req.ToDomain();
         teamRepository.save(team);
 
         User user = userRepository.findById(req.getUserId()).orElseThrow(ResourceNotFoundException::Default);
