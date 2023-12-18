@@ -1,14 +1,30 @@
 version: '3.7'
 
 services:
+  mongo:
+    image: mongo:latest
+    restart: always
+    ports:
+      - 27017:27017
+    environment:
+      - MONGO_INITDB_DATABASE=dashboard
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=password
+    volumes:
+      - mongodb_data_container:/data/db
+    networks:
+      - backend
+
   dashboard:
     image: dashboard:latest
     ports:
       - "8080:8080"
-
     networks:
       - backend
 
 networks:
   backend:
     driver: bridge
+
+volumes:
+  mongodb_data_container:
