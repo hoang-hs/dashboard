@@ -5,23 +5,17 @@ import com.example.s.core.domain.repository.UserRepository;
 import com.example.s.exception.BadRequestException;
 import com.example.s.exception.ResourceNotFoundException;
 import com.example.s.present.request.LoginRequest;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
-
-    @Autowired
-    public UserService(UserRepository userRepository) {
-        this.userRepository = userRepository;
-        this.passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-    }
 
     public User save(LoginRequest req) {
         Optional<User> optionalUser = userRepository.findByUsername(req.getUsername());

@@ -11,6 +11,7 @@ import com.example.s.core.domain.repository.UserRepository;
 import com.example.s.exception.ResourceNotFoundException;
 import com.example.s.present.request.DashboardRequest;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.MDC;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -38,7 +39,8 @@ public class DashboardService {
     }
 
     private void saveHistory(String id) {
-        Optional<History> optionalHistory = historyRepository.findByUser_IdAndDashboard_Id("", id);
+        String userId = MDC.get("user_id");
+        Optional<History> optionalHistory = historyRepository.findByUser_IdAndDashboard_Id(userId, id);
         History history = new History();
         if (optionalHistory.isPresent()) {
             history.setDashboard(optionalHistory.get().getDashboard());

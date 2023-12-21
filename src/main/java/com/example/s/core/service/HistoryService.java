@@ -4,6 +4,7 @@ import com.example.s.core.domain.Dashboard;
 import com.example.s.core.domain.History;
 import com.example.s.core.domain.repository.HistoryRepository;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.MDC;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -19,7 +20,8 @@ public class HistoryService {
 
     public List<Dashboard> get() {
         Pageable pageable = PageRequest.of(1, 1, Sort.by(Sort.Direction.ASC, "updatedAt"));
-        List<History> histories = historyRepository.findAllByUser_Id(pageable, "");
+        String userId = MDC.get("user_id");
+        List<History> histories = historyRepository.findAllByUser_Id(pageable, userId);
         return histories.stream().map(History::getDashboard).collect(Collectors.toList());
     }
 }
