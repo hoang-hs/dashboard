@@ -48,7 +48,7 @@ public class DashboardService {
             history.setId(optionalHistory.get().getId());
             history.setCreatedAt(optionalHistory.get().getCreatedAt());
         } else {
-            User user = userRepository.findById("").orElseThrow(ResourceNotFoundException::Default);
+            User user = userRepository.findById(userId).orElseThrow(ResourceNotFoundException::Default);
             Dashboard dashboard = dashboardRepository.findById(id).orElseThrow(ResourceNotFoundException::Default);
             history.setUser(user);
             history.setDashboard(dashboard);

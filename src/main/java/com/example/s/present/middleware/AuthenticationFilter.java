@@ -30,7 +30,7 @@ public class AuthenticationFilter extends OncePerRequestFilter {
 
     private final SecretKey secretKey;
 
-    private final List<String> path = List.of("/auth/login", "/user");
+    private final List<String> path = List.of("/auth/login", "/user", "/ping");
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {

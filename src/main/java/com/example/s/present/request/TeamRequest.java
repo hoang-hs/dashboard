@@ -9,8 +9,6 @@ import lombok.Setter;
 @Setter
 public class TeamRequest {
     @NotBlank
-    String userId;
-    @NotBlank
     String name;
 
     public Team ToDomain() {

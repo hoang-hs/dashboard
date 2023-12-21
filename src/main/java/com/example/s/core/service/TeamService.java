@@ -10,6 +10,7 @@ import com.example.s.core.enums.Role;
 import com.example.s.exception.ResourceNotFoundException;
 import com.example.s.present.request.TeamRequest;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.MDC;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -22,8 +23,8 @@ public class TeamService {
     public Team save(TeamRequest req) {
         Team team = req.ToDomain();
         teamRepository.save(team);
-
-        User user = userRepository.findById(req.getUserId()).orElseThrow(ResourceNotFoundException::Default);
+        String userId = MDC.get("user_id");
+        User user = userRepository.findById(userId).orElseThrow(ResourceNotFoundException::Default);
         Permission permission = new Permission();
         permission.setUser(user);
         permission.setTeam(team);
