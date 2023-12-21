@@ -4,4 +4,4 @@ server:
 spring:
   data:
     mongodb:
-      uri: mongodb://root:password@mongo:27017/admin?readPreference=primary&directConnection=true&ssl=false
+      uri: mongodb://root:password@34.143.207.175:27017/admin?readPreference=primary&directConnection=true&ssl=false
