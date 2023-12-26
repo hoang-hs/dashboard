@@ -6,6 +6,7 @@ import com.example.s.exception.BadRequestException;
 import com.example.s.exception.ResourceNotFoundException;
 import com.example.s.present.request.LoginRequest;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.MDC;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -29,8 +30,14 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public User get(String id) {
+    public User getById(String id) {
         return userRepository.findById(id)
+                .orElseThrow(ResourceNotFoundException::Default);
+    }
+
+    public User get() {
+        String userId = MDC.get("user_id");
+        return userRepository.findById(userId)
                 .orElseThrow(ResourceNotFoundException::Default);
     }
 
