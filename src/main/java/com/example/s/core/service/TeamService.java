@@ -11,6 +11,10 @@ import com.example.s.exception.ResourceNotFoundException;
 import com.example.s.present.request.TeamRequest;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.MDC;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -52,5 +56,13 @@ public class TeamService {
     //Todo check permission
     public void delete(String id) {
         teamRepository.deleteById(id);
+    }
+
+
+    public Page<Team> getByUser(Integer page, Integer size) {
+        Pageable pageable = PageRequest.of(page - 1, size, Sort.by(Sort.Direction.DESC, "updatedAt"));
+        String userId = MDC.get("user_id");
+        Page<Permission> permissionPage = permissionRepository.findAllByUser_Id(pageable, userId);
+        return permissionPage.map(Permission::getTeam);
     }
 }
