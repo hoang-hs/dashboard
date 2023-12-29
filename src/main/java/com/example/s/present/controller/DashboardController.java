@@ -22,4 +22,9 @@ public class DashboardController extends BaseController {
         return dashboardService.get(id);
     }
 
+    @DeleteMapping("/{id}")
+    void delete(@PathVariable String id) {
+        dashboardService.delete(id);
+    }
+
 }

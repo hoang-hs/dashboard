@@ -55,4 +55,8 @@ public class DashboardService {
         }
         historyRepository.save(history);
     }
+
+    public void delete(String id) {
+        dashboardRepository.deleteById(id);
+    }
 }
