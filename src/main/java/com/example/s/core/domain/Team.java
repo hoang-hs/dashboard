@@ -17,7 +17,7 @@ import java.time.Instant;
 public class Team {
     @Id
     private String id;
-    @Indexed(unique=true)
+    @Indexed(unique = true)
     private String name;
 
     @CreatedDate
@@ -26,6 +26,13 @@ public class Team {
     Instant updatedAt;
 
     public Team() {
+        this.createdAt = Instant.now();
+        this.updatedAt = Instant.now();
+    }
+
+    public Team(String userId, String username) {
+        this.id = userId;
+        this.name = username;
         this.createdAt = Instant.now();
         this.updatedAt = Instant.now();
     }

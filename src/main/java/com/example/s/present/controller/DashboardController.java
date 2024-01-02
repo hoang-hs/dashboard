@@ -2,6 +2,7 @@ package com.example.s.present.controller;
 
 import com.example.s.core.domain.Dashboard;
 import com.example.s.core.service.DashboardService;
+import com.example.s.present.request.DashboardPrivateRequest;
 import com.example.s.present.request.DashboardRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -27,4 +28,8 @@ public class DashboardController extends BaseController {
         dashboardService.delete(id);
     }
 
+    @PostMapping("/private")
+    Dashboard save(@RequestBody DashboardPrivateRequest req) {
+        return dashboardService.savePrivate(req);
+    }
 }

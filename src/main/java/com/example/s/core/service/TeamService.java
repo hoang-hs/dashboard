@@ -42,7 +42,6 @@ public class TeamService {
                 .orElseThrow(ResourceNotFoundException::Default);
     }
 
-    //Todo check permission
     public Team update(TeamRequest req, String id) {
         Team existedTeam = teamRepository.findById(id)
                 .orElseThrow(ResourceNotFoundException::Default);
@@ -53,7 +52,6 @@ public class TeamService {
         return teamRepository.save(team);
     }
 
-    //Todo check permission
     public void delete(String id) {
         teamRepository.deleteById(id);
     }
